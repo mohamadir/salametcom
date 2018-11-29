@@ -33,6 +33,18 @@ class UserController extends Controller {
             , 200);
     }
 
+    public function login(Request $request) {
+
+        $user = User::where('email', $request->email)->where('password', $request->password);
+        if ($user) {
+            session(['logged', true]);
+            return view('trnasports');
+        } else {
+            return view('welcome');
+        }
+
+    }
+
     public function search(Request $request) {
         $search = $request->search;
         if ($request->type == 'person') { // person

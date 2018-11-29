@@ -16,11 +16,13 @@ class CreateUsersTable extends Migration {
             $table->string('name');
             $table->string('email')->unique();
             $table->integer('phone');
-            $table->string('position');
-            $table->boolean('is_admin');
+            $table->string('position')->nullable();;
+            $table->boolean('is_admin')->default(false);
             $table->string('area');
+            $table->string('password');
             $table->string('hospital')->nullable();
             $table->string('code')->nullable();
+            $table->rememberToken();
             $table->timestamps();
         });
     }

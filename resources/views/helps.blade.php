@@ -52,7 +52,7 @@
         </select>
     </div> -->
     <div style="width: 100%; text-align: center;" class="mb-3">
-      <button type="submit" class="btn btn-primary" style="background: red; align-self: center;">Submit</button>
+      <button type="submit" class="btn btn-primary" >تسجيل</button>
     </div>
 </form>
 </div>

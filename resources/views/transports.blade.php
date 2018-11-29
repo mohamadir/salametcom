@@ -9,7 +9,7 @@
     <h3 style="text-align: center;" class="mt-5">التوصيلات</h3>
     <div class="form-group" >
         <label for="exampleInputEmail1">توصيل من: </label>
-        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="القدس, بيت حنينا.. الخ">
+        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="قلنديا, حزمة...الخ">
         <small id="emailHelp" class="form-text text-muted">الرجاء كتابة المكان بشكل صحيح</small>
     </div>
     <div class="form-group" >
@@ -24,7 +24,12 @@
     <div class="form-group">
         <label for="exampleSelect1">السائق: </label>
         <select class="form-control" id="exampleSelect1">
-        <option>أنا</option>
+        @auth
+        <option>أنا ( {{$user->name}} )</option>
+        @endauth
+        @guest
+        <option>أنا </option>
+        @endguest
         <option>تاكسي</option>
         </select>
     </div>
@@ -39,7 +44,7 @@
         </select>
     </div> -->
     <div style="width: 100%; text-align: center;" class="mb-3">
-      <button type="submit" class="btn btn-primary" style="background: red; align-self: center;">Submit</button>
+      <button type="submit" class="btn btn-primary btn-w" style="background: red; align-self: center;">تسجيل</button>
     </div>
 </form>
 </div>
