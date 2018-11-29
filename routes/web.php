@@ -74,10 +74,16 @@ Route::get('/signout', function () {
 });
 
 Route::get('/transports', function () {
+    if(!Auth::check()){
+        return view('asklogin');
+    }
     return view('transports',['user'=>Auth::user()]);
 });
 
 Route::get('/helps', function () {
+    if(!Auth::check()){
+        return view('asklogin');
+    }
     return view('helps');
 });
 

@@ -28,9 +28,14 @@
           <li class="nav-item">
            <h3> <a class="nav-link"  style="color: white;" href="/helps">مساعدات <i class="fas fa-hands-helping"></i></a></h3>
           </li>
+          @auth
+          @if($user->is_admin == 1)
           <li class="nav-item">
-           <h3> <a class="nav-link"   style="color: white;" href="#">احصائيات <i class="fas fa-chart-bar"></i></a></h3>
-          </li>
+           <h3> <a class="nav-link"   style="color: white;" href="#">احصائيات {{$user->is_admin}} <i class="fas fa-chart-bar"></i></a></h3>
+          </li>  
+          @endif         
+          @endauth
+         
 
 
         </ul>
