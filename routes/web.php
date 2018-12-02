@@ -12,7 +12,11 @@
  */
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use App\Transport;
 use Illuminate\Http\Request;
+
+// ===========================================  DASHBOARD ============================================================= 
+
 
 Route::get('/', function () {
     $logged = session('logged', false);
@@ -22,6 +26,8 @@ Route::get('/', function () {
     return view('dashboard',['user'=>Auth::user()]);
 });
 
+
+// ===========================================  LOGIN ============================================================= 
 Route::get('/login', function () {
         return view('login');
 });
@@ -40,6 +46,18 @@ Route::post('/login', function (Request $request) {
     session(['logged' => true]);
     return redirect('/');
 
+});
+
+Route::get('/signout', function () {
+    Auth::logout();
+    session(['logged' => false]);
+    return redirect('/');
+});
+
+// ===========================================  REGISTER ============================================================= 
+
+Route::get('/register', function () {
+    return view('register');
 });
 
 Route::post('/register', function (Request $request) {
@@ -63,15 +81,14 @@ Route::post('/register', function (Request $request) {
     $user->hospital = $request->hospital;
     $user->code = $request->code;
     $user->save();
+    Auth::login($user);
     session(['logged' => true]);
     return redirect('/');
 });
 
-Route::get('/signout', function () {
-    Auth::logout();
-    session(['logged' => false]);
-    return redirect('/');
-});
+
+// ===========================================  TRANSPORTS ============================================================= 
+
 
 Route::get('/transports', function () {
     if(!Auth::check()){
@@ -80,13 +97,87 @@ Route::get('/transports', function () {
     return view('transports',['user'=>Auth::user()]);
 });
 
+Route::post('/transports',function(Request $request){
+    
+    $to = $request->to;
+    $from = $request->from;
+    $people = $request->people;
+    $price_share = $request->price_share;
+
+    if(!$request->from){
+        return view('transports',['user'=>Auth::user(),
+        'from_error' => 'الرجاء كتابة مكان التوصيل',
+        'from' => $from,
+        'to' => $to,
+        'people' => $people,
+        'price_share' => $price_share
+        ]);
+    }
+    if(!$request->to){
+        return view('transports',['user'=>Auth::user(),'to_error' => 'الرجاء كتابة مكان التوصيل',
+        'from' => $from,
+        'to' => $to,
+        'people' => $people,
+        'price_share' => $price_share
+        ]);
+    }
+    if(!$request->people){
+        return view('transports',['user'=>Auth::user(),'people_error' => 'الرجاء كتابة عدد الاشخاص',
+        'from' => $from,
+        'to' => $to,
+        'people' => $people,
+        'price_share' => $price_share
+        ]);
+    }
+
+    $transport = new Transport();
+    $transport->from = $request->from;
+    $transport->to = $request->to;
+    $transport->people = $request->people;
+    $transport->driver = $request->driver;
+   /*  if($request->driver  == 'تاكسي'){
+        $transport->driver = 'تاكسي';
+    }else{
+        $user = User::find($request->driver)->first();
+        $transport->driver = $user->name;
+
+    } */
+    $transport->price_share = $request->price_share;
+    $transport->save();
+    return view('dashboard',['user'=>Auth::user(),
+    'message'=> 'شكراَ جزيلاَ']);
+});
+
+
+
+// ===========================================  HELPS ============================================================= 
+
+
 Route::get('/helps', function () {
     if(!Auth::check()){
         return view('asklogin');
     }
-    return view('helps');
+    return view('helps',['user'=>Auth::user()]);
 });
 
-Route::get('/register', function () {
-    return view('register');
+
+
+// ===========================================  DONATE ============================================================= 
+
+Route::get('/donate', function () {
+    if(!Auth::check()){
+        return view('asklogin');
+    }
+    return view('donate',['user'=>Auth::user()]);
 });
+
+// ===========================================  TOOLS ============================================================= 
+
+Route::get('/tools', function () {
+    if(!Auth::check()){
+        return view('asklogin');
+    }
+    return view('tools',['user'=>Auth::user()]);
+});
+
+

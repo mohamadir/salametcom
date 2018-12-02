@@ -18,8 +18,8 @@ class CreateTransportsTable extends Migration
             $table->string('from');
             $table->string('to');
             $table->integer('people');
-            $table->enum('driver',['volunteer','taxi']);
-            $table->integer('price_share');
+            $table->string('driver');
+            $table->integer('price_share')->nullable();
             $table->timestamps();
         });
     }

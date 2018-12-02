@@ -32,6 +32,12 @@
           <li class="nav-item">
            <h3> <a class="nav-link"  style="color: white;" href="/helps">مساعدات <i class="fas fa-hands-helping"></i></a></h3>
           </li>
+          <li class="nav-item">
+           <h3> <a class="nav-link"  style="color: white;" href="/tools">شراء اجهزة <i class="fas fa-prescription-bottle-alt"></i></a></h3>
+          </li>
+          <li class="nav-item">
+           <h3> <a class="nav-link"  style="color: white;" href="/donate">تبرعات عينية <i class="fas fa-hand-holding-usd"></i></a></h3>
+          </li>
           @auth
           @if($user->is_admin == 1)
           <li class="nav-item">
