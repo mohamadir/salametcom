@@ -26,7 +26,7 @@ class UserController extends Controller {
     }
 
     public function getUsers(Request $request) {
-        $users = User::get();
+        $users = User::paginate(20);
         return response()->json([
             'message' => 'OK',
             'user' => $users]

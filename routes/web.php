@@ -53,6 +53,19 @@ Route::get('/signout', function () {
     session(['logged' => false]);
     return redirect('/');
 });
+// ===========================================  USERS ============================================================= 
+
+
+Route::get('/users', function (Request $request) {
+    $users = User::get();
+    return view('users',['users'=> $users, 'user' => Auth::user()]);
+});
+
+Route::post('/delete/{$id}', function (Request $request) {
+    
+    return redirect('/');
+});
+
 
 // ===========================================  REGISTER ============================================================= 
 
