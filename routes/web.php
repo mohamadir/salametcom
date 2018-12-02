@@ -61,9 +61,10 @@ Route::get('/users', function (Request $request) {
     return view('users',['users'=> $users, 'user' => Auth::user()]);
 });
 
-Route::post('/delete/{$id}', function (Request $request) {
-    
-    return redirect('/');
+Route::post('/delete/{id}', function (Request $request,$id) {
+    $user = User::find($id)->first();
+    $user->delete();
+    return redirect('/users');
 });
 
 

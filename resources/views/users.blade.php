@@ -14,6 +14,7 @@
                     </div>
                     <div class="col-6 text-left d-flex flex-row" style=" direction: ltr;">
                         <form action="/delete/{{$user->id}}" class="m-2" method="post">
+                        @csrf
                           <button type="submit" class="btn btn-primary"><i class="far fa-trash-alt"></i></button>
                         </form> 
                     </div>
