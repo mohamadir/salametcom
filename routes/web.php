@@ -57,6 +57,9 @@ Route::get('/signout', function () {
 
 
 Route::get('/users', function (Request $request) {
+    if(!Auth::check()){
+        return view('asklogin');
+    }
     $users = User::get();
     return view('users',['users'=> $users, 'user' => Auth::user()]);
 });
