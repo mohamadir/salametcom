@@ -60,6 +60,10 @@ Route::get('/users', function (Request $request) {
     if(!Auth::check()){
         return view('asklogin');
     }
+    if($request->search){
+        $users = User::where('name' , 'LIKE', '%' . $request->search . '%')->get();
+        return view('users',['users'=> $users, 'user' => Auth::user()]);
+    }
     $users = User::get();
     return view('users',['users'=> $users, 'user' => Auth::user()]);
 });
