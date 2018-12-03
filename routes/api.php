@@ -31,5 +31,10 @@ Route::post('/transports', 'TransportController@addTransport');
 Route::get('/transports', 'TransportController@getTransports');
 
 // helps
-Route::post('/helps', 'TransportController@addHelp');
-Route::get('/helps', 'TransportController@getHelps');
+Route::post('/helps', 'HelpController@addHelp');
+Route::get('/helps', 'HelpController@getHelps');
+
+// tools
+Route::get('/tools', 'ToolController@getTools');
+Route::get('/tools/between', 'ToolController@getToolsBetween');
+

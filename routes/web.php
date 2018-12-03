@@ -13,6 +13,8 @@
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Transport;
+use App\Help;
+use App\Tool;
 use Illuminate\Http\Request;
 
 // ===========================================  DASHBOARD ============================================================= 
@@ -183,6 +185,43 @@ Route::get('/helps', function () {
 
 
 
+Route::post('/helps',function(Request $request){
+    $patient = $request->patient;
+
+    if(!$patient){
+        return view('helps',['user'=>Auth::user(),
+        'patient_error' => 'الرجاء كتابة اسم المريض'
+        ]);
+    }
+
+    $help = new Help();
+    $help->price = $request->price;
+    $help->patient = $request->patient;
+    $help->patient_phone = $request->patient_phone;
+    $help->help_type = $request->help_type;
+    $help->asked_from = $request->asked_from;
+    $help->description = $request->description;
+    $help->hospital = $request->hospital;
+
+    $help->save();
+    return view('dashboard',['user'=>Auth::user(),
+    'message'=> 'شكراَ جزيلاَ']);
+});
+
+
+// ===========================================  STATISTICS ============================================================= 
+
+
+Route::get('/statistics', function () {
+    if(!Auth::check()){
+        return view('asklogin');
+    }
+    return view('statistics',['user'=>Auth::user()]);
+});
+
+
+
+
 // ===========================================  DONATE ============================================================= 
 
 Route::get('/donate', function () {
@@ -200,5 +239,9 @@ Route::get('/tools', function () {
     }
     return view('tools',['user'=>Auth::user()]);
 });
+
+
+
+Route::post('/tools','ToolController@addTool');
 
 

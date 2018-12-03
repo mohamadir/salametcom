@@ -22,8 +22,8 @@
                         <h6 class="align-self-right" >{{$user->name}}</h6>  
                     </div>
                     <div class="col-2 text-left d-flex flex-row" style=" direction: ltr;">
-                        <form action="/delete/{{$user->id}}" class="mb-2 mt-2" method="post"  style=" direction: ltr;">
-                        @csrf
+                        <form action="/delete/{{$user->id}}" class="delete mb-2 mt-2" method="post"  style=" direction: ltr;">
+                        {{ csrf_field() }}
                           <button type="submit"  class="btn btn-primary"><i class="far fa-trash-alt"></i></button>
                         </form> 
                         <div  style=" direction: ltr;">
@@ -49,9 +49,18 @@
           
         @endforeach
     </div>    
-
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js" ></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(".delete").on("submit", function(){
+            return confirm("هل تريد حذف هذا الشخص؟");
+        });
+    });
+</script>
 
 @endsection
+
+
 
 
 

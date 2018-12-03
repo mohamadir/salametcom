@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateHelpsTable extends Migration
+class CreateToolsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,13 @@ class CreateHelpsTable extends Migration
      */
     public function up()
     {
-        Schema::create('helps', function (Blueprint $table) {
+        Schema::create('tools', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('price')->nullable();
             $table->string('patient');
             $table->string('hospital')->nullable();
-            $table->string('help_type');
+            $table->string('tool');
             $table->string('description')->nullable();
             $table->string('patient_phone')->nullable();
-            $table->string('asked_from');
             $table->timestamps();
         });
     }
@@ -33,6 +31,6 @@ class CreateHelpsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('helps');
+        Schema::dropIfExists('tools');
     }
 }

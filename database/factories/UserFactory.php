@@ -23,7 +23,7 @@ $factory->define(App\User::class, function (Faker $faker) {
         'hospital' => $faker->company,
         'area' => $faker->country,
         'is_admin' => 0,
-        'phone' => 123456
+        'phone' => '123456'
     ];
 });
 
