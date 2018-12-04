@@ -107,7 +107,7 @@ Route::post('/register', function (Request $request) {
     $user->save();
     Auth::login($user);
     session(['logged' => true]);
-    return redirect('/');
+    return view('dashboard',['user'=> Auth::user()]);
 });
 
 

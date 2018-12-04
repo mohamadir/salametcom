@@ -26,26 +26,32 @@
 
       <div class="navbar-collapse offcanvas-collapse bg-primary" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto mt-3" style="direction: rtl; text-align: right;" >
-        <li class="nav-item active">
+          <li class="nav-item active">
             <h3><a class="nav-link" style="color: white;" href="/"> الرئيسية <i class="fas fa-home"></i><span class="sr-only">(current)</span></a></h3>
           </li>
+          <div style="height: 1px; background: white;"></div>
           <li class="nav-item active">
             <h3><a class="nav-link" style="color: white;" href="/transports"> توصيلات <i class="fas fa-car"></i><span class="sr-only">(current)</span></a></h3>
           </li>
+          <div style="height: 1px; background: white;"></div>
           <li class="nav-item">
            <h3> <a class="nav-link"  style="color: white;" href="/helps">مساعدات <i class="fas fa-hands-helping"></i></a></h3>
           </li>
+          <div style="height: 1px; background: white;"></div>
           <li class="nav-item">
            <h3> <a class="nav-link"  style="color: white;" href="/tools">شراء اجهزة <i class="fas fa-prescription-bottle-alt"></i></a></h3>
           </li>
+          <div style="height: 1px; background: white;"></div>
           <li class="nav-item">
            <h3> <a class="nav-link"  style="color: white;" href="/donates">تبرعات عينية <i class="fas fa-hand-holding-usd"></i></a></h3>
           </li>
           @auth
           @if($user->is_admin == 1)
+          <div style="height: 1px; background: white;"></div>
           <li class="nav-item">
            <h3> <a class="nav-link"   style="color: white;" href="/statistics">احصائيات  <i class="fas fa-chart-bar"></i></a></h3>
           </li>  
+          <div style="height: 1px; background: white;"></div>
           <li class="nav-item">
            <h3> <a class="nav-link"   style="color: white;" href="/users">مستخدمين <i class="fas fa-users"></i></i></a></h3>
           </li> 
