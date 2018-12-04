@@ -19,11 +19,14 @@ class ToolController extends Controller
     }
 
     public function getToolsBetween(Request $request){
-        $from = date('2018-12-15 10:20:20');
-        $to = date('2018-12-20 10:20:20');
+        $from = date($request->from_date);
+        $to = date($request->todate);
         $tools = Tool::where('created_at','>=',$from)->where('created_at','<=',$to)->get();
         return $tools;
     }
+
+
+
     public function addTool(Request $request){
 
         $tool = $request->tool;

@@ -58,13 +58,8 @@
     <div class="form-group">
         <label for="driver">السائق: </label>
         <select class="form-control" name="driver" id="exampleSelect1">
-        @auth
-        <option value="{{$user->name}}"  >أنا ( {{$user->name}} )</option>
-        @endauth
-        @guest
-        <option>أنا </option>
-        @endguest
-        <option value="driver">تاكسي</option>
+        <option value="متطوع">متطوع</option>
+        <option value="سيارة أجرة">سيارة أجرة</option>
          </select>
     </div>
     <div style="width: 100%; text-align: center;" class="mb-3">

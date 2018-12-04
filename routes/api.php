@@ -38,3 +38,7 @@ Route::get('/helps', 'HelpController@getHelps');
 Route::get('/tools', 'ToolController@getTools');
 Route::get('/tools/between', 'ToolController@getToolsBetween');
 
+
+// donates
+Route::get('/donates', 'DonateController@getDonates');
+

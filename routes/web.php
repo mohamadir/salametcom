@@ -13,6 +13,7 @@
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Transport;
+use App\Donate;
 use App\Help;
 use App\Tool;
 use Illuminate\Http\Request;
@@ -127,6 +128,7 @@ Route::post('/transports',function(Request $request){
     $people = $request->people;
     $price_share = $request->price_share;
 
+
     if(!$request->from){
         return view('transports',['user'=>Auth::user(),
         'from_error' => 'الرجاء كتابة مكان التوصيل',
@@ -136,6 +138,7 @@ Route::post('/transports',function(Request $request){
         'price_share' => $price_share
         ]);
     }
+
     if(!$request->to){
         return view('transports',['user'=>Auth::user(),'to_error' => 'الرجاء كتابة مكان التوصيل',
         'from' => $from,
@@ -144,6 +147,7 @@ Route::post('/transports',function(Request $request){
         'price_share' => $price_share
         ]);
     }
+
     if(!$request->people){
         return view('transports',['user'=>Auth::user(),'people_error' => 'الرجاء كتابة عدد الاشخاص',
         'from' => $from,
@@ -219,17 +223,53 @@ Route::get('/statistics', function () {
     return view('statistics',['user'=>Auth::user()]);
 });
 
+Route::post('/statistics', 'StatisticsController@statistics');
+
+
 
 
 
 // ===========================================  DONATE ============================================================= 
 
-Route::get('/donate', function () {
+Route::get('/donates', function () {
     if(!Auth::check()){
         return view('asklogin');
     }
-    return view('donate',['user'=>Auth::user()]);
+    return view('donates',['user'=>Auth::user()]);
 });
+
+
+
+Route::post('/donates', function (Request $request) {
+    $donor_name = $request->donor_name;
+    $donate_type = $request->donate_type;
+ 
+
+    if(!$donor_name){
+        return view('donates',['user'=>Auth::user(),
+            'donor_name_error' , 'الرجاء كتابة اسم المتبرع'
+        ]);
+    }
+
+    if(!$donor_name){
+        return view('donates',['user'=>Auth::user(),
+            'donate_type_error' , 'الرجاء كتابة نوع التبرع'
+        ]);
+    }
+
+
+    $donate = new Donate();
+    $donate->donor_name = $request->donor_name;
+    $donate->donate_type = $request->donate_type;
+    $donate->description = $request->description;
+
+    $donate->save();
+    return view('dashboard',['user'=>Auth::user(),
+    'message'=> 'شكراَ جزيلاَ']);
+
+
+});
+
 
 // ===========================================  TOOLS ============================================================= 
 

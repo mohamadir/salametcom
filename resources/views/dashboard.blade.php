@@ -48,7 +48,7 @@
            <h3> <a class="nav-link text-center"  style="color: red;" href="/tools">شراء اجهزة <i class="fas fa-prescription-bottle-alt"></i></a></h3>
           </li>
           <li class="nav-item">
-           <h3> <a class="nav-link text-center"  style="color: red;" href="/donate">تبرعات عينية <i class="fas fa-hand-holding-usd"></i></a></h3>
+           <h3> <a class="nav-link text-center"  style="color: red;" href="/donates">تبرعات عينية <i class="fas fa-hand-holding-usd"></i></a></h3>
           </li>
           @auth
           @if($user->is_admin == 1)
