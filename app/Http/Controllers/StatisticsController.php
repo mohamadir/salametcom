@@ -28,7 +28,7 @@ class StatisticsController extends Controller {
                 'help' => $help->count(),
                 'from' => $from,
                 'to' => $to,
-                'tool' =>  $tool->get(),
+                'tool' =>  $tool->count(),
                 'transport' => $transport->count()
             ]);
         }
