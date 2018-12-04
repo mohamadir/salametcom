@@ -53,7 +53,7 @@
           @auth
           @if($user->is_admin == 1)
           <li class="nav-item">
-           <h3> <a class="nav-link text-center"   style="color: red;" href="#">احصائيات  <i class="fas fa-chart-bar"></i></a></h3>
+           <h3> <a class="nav-link text-center"   style="color: red;" href="/statistics">احصائيات  <i class="fas fa-chart-bar"></i></a></h3>
           </li>  
           <li class="nav-item">
            <h3> <a class="nav-link text-center"   style="color: red;" href="/users">مستخدمين <i class="fas fa-users"></i></i></a></h3>
