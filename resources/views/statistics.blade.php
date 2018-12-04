@@ -10,7 +10,7 @@
 @csrf
     <div class="row">
         <div class="col-8">
-            <input id="datepicker"  name="from_date" placeholder="yyyy-mm-dd"  />
+            <input id="datepicker"  name="from_date" readonly placeholder="yyyy-mm-dd"  />
         </div>
         <div class="col-4 text-center">
             من تاريخ
@@ -18,7 +18,7 @@
     </div>
     <div class="row">
         <div class="col-8">
-            <input id="datepicker2" class="mt-5" name="to_date" placeholder="yyyy-mm-dd"  />
+            <input id="datepicker2" class="mt-5" name="to_date"  readonly placeholder="yyyy-mm-dd"  />
         </div>
         <div class="col-4 text-center mt-5">
             حتى تاريخ
