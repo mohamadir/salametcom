@@ -120,6 +120,9 @@
                                 <strong>مساعدة بمبلغ: </strong> {{$result->price_share}}
                             </p>
                         @endif
+                             <p>
+                                <strong> الزمان:  </strong> <strong style="color: green;">  {{$result->created_at}}  </strong>
+                            </p>
                       
                     </div>
                        
