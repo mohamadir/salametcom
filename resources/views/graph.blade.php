@@ -7,6 +7,14 @@
 @endsection
 
 <h2 class="mt-3 mb-5 text-center"> رسم بياني</h2>
+
+<h6 class="text-center mb-3">
+    من تاريخ
+    <strong style="color: green;">{{$from}}</strong>
+    وحتى تاريخ 
+    <strong style="color: green;">{{$to}}</strong>
+</h6>
+
 <canvas id="myChart" data-donate="{{$donate}}" data-transport="{{$transport}}" data-help = "{{$help}}" data-tool="{{$tool}}"></canvas>
 
 
@@ -28,7 +36,7 @@ var ctx = document.getElementById('myChart').getContext('2d');
 
                 // The data for our dataset
                 data: {
-                    labels: ["مساعدات", "شراء اجهزة", "توصيلات", "تبرعات"],
+                    labels: ["مساعدات", "شراء اجهزة" , "توصيلات", "تبرعات"],
                     datasets: [{
                         label: "My First dataset",
                         backgroundColor: ['#ee0000','#178ae5','#3ede04','#04625d'],

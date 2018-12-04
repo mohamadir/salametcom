@@ -26,6 +26,8 @@ class StatisticsController extends Controller {
                 'user'=>Auth::user(),
                 'donate' => $donate->count(),
                 'help' => $help->count(),
+                'from' => $from,
+                'to' => $to,
                 'tool' =>  $tool->get(),
                 'transport' => $transport->count()
             ]);
