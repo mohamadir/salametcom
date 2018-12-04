@@ -16,7 +16,20 @@ class StatisticsController extends Controller {
         $from = date($request->from_date);
         $to = date($request->to_date);
         $type = $request->type;
-        
+        if($request->info_type == 'graph'){
+            $tool = Tool::where('created_at','>=',$from)->where('created_at','<=',$to);
+            $donate = Donate::where('created_at','>=',$from)->where('created_at','<=',$to);
+            $help = Help::where('created_at','>=',$from)->where('created_at','<=',$to);
+            $transport = Transport::where('created_at','>=',$from)->where('created_at','<=',$to);
+
+            return view('graph',[
+                'user'=>Auth::user(),
+                'donate' => $donate->count(),
+                'help' => $help->count(),
+                'tool' =>  $tool->get(),
+                'transport' => $transport->count()
+            ]);
+        }
         $typeNumber = -1;
         if($type == 'Tool'){
             $results = Tool::where('created_at','>=',$from)->where('created_at','<=',$to);
@@ -43,6 +56,7 @@ class StatisticsController extends Controller {
             'results' =>  $results->get(),
             'count' => $results->count()
         ]);
+
     
     }
 

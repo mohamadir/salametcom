@@ -285,3 +285,9 @@ Route::get('/tools', function () {
 Route::post('/tools','ToolController@addTool');
 
 
+
+
+// ===========================================  GRAPH ============================================================= 
+Route::get('/graph', function () {
+    return view('graph',['user'=>Auth::user()]);
+});

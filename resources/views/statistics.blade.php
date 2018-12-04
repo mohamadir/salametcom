@@ -39,12 +39,24 @@
             نوع البحث
         </div>
     </div>
+    <div class="text-center mb-2 mt-2">
+    <div class="form-check form-check-inline ">
+    <input class="form-check-input" checked type="radio" name="info_type" id="inlineRadio1" value="statistics">
+    <label class="form-check-label" for="inlineRadio1">مفصّل</label>
+    </div>
+    <div class="form-check form-check-inline">
+    <input class="form-check-input" type="radio" name="info_type" id="inlineRadio2" value="graph">
+    <label class="form-check-label"  for="inlineRadio2">رسم بياني</label>
+    </div>
     <div class="row mt-2">
         <div class="col-12 text-center">
             <button type="submit" class="btn btn-primary"> عرض النتائج </button>
         </div>     
     </div>
+    
+   
 </form>
+
 @endsection
 
 
