@@ -30,7 +30,7 @@
                          </h6>
                         @elseif ($type == 2)
                         <h6 class="align-self-right" > 
-                             {{$result->created_at}}
+                             {{$result->help_type}}
                          </h6>
                         @elseif ($type == 1)
                         <h6 class="align-self-right" > 
