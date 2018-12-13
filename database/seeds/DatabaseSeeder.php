@@ -32,7 +32,7 @@ class DatabaseSeeder extends Seeder {
             'name' => 'يعقوب ابراهيم',
             'is_admin' => 1,
             'email' => 'yaqob@gmail.com',
-            'password' => '123456',
+            'password' => 'Yaacob6002',
             'phone' => '0545444704',
             'area' => 'ابوغوش',
         ]);
