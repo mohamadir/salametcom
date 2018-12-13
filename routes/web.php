@@ -43,7 +43,7 @@ Route::post('/login', function (Request $request) {
     }
     Auth::loginUsingId($user->id);
     session(['logged' => true]);
-    return redirect('/');
+    return view('dashboard', ['user' => Auth::user()]);
 
 });
 
