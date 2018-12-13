@@ -67,7 +67,8 @@ Route::get('/users', function (Request $request) {
 });
 
 Route::post('/delete/{id}', function (Request $request, $id) {
-    $user = User::find($id)->first();
+
+    $user = User::where('id', '=', $id)->first();
     $user->delete();
     return redirect('/users');
 });
