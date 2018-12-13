@@ -26,9 +26,7 @@
                                 </div>
                             @endif
                     </form>
-                    <div class="text-center mt-5">
-                        <h5>ليس لديك حساب؟ <a href="/register" class="font-weight-bold" >تسجيل</a></h5>
-                    </div>
+
 
             </div>
 @endsection

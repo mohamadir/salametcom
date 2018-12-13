@@ -10,29 +10,26 @@
 | contains the "web" middleware group. Now create something great!
 |
  */
-use Illuminate\Support\Facades\Auth;
-use App\User;
-use App\Transport;
 use App\Donate;
 use App\Help;
-use App\Tool;
+use App\Transport;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-// ===========================================  DASHBOARD ============================================================= 
-
+// ===========================================  DASHBOARD =============================================================
 
 Route::get('/', function () {
     $logged = session('logged', false);
     if (!$logged) {
         return redirect('/login');
     }
-    return view('dashboard',['user'=>Auth::user()]);
+    return view('dashboard', ['user' => Auth::user()]);
 });
 
-
-// ===========================================  LOGIN ============================================================= 
+// ===========================================  LOGIN =============================================================
 Route::get('/login', function () {
-        return view('login');
+    return view('login');
 });
 
 Route::post('/login', function (Request $request) {
@@ -56,32 +53,34 @@ Route::get('/signout', function () {
     session(['logged' => false]);
     return redirect('/');
 });
-// ===========================================  USERS ============================================================= 
-
+// ===========================================  USERS =============================================================
 
 Route::get('/users', function (Request $request) {
-    if(!Auth::check()){
+    if (!Auth::check()) {
         return view('asklogin');
     }
-    if($request->search){
-        $users = User::where('name' , 'LIKE', '%' . $request->search . '%')->get();
-        return view('users',['users'=> $users, 'user' => Auth::user()]);
+    if ($request->search) {
+        $users = User::where('name', 'LIKE', '%' . $request->search . '%')->get();
+        return view('users', ['users' => $users, 'user' => Auth::user()]);
     }
     $users = User::get();
-    return view('users',['users'=> $users, 'user' => Auth::user()]);
+    return view('users', ['users' => $users, 'user' => Auth::user()]);
 });
 
-Route::post('/delete/{id}', function (Request $request,$id) {
+Route::post('/delete/{id}', function (Request $request, $id) {
     $user = User::find($id)->first();
     $user->delete();
     return redirect('/users');
 });
 
-
-// ===========================================  REGISTER ============================================================= 
+// ===========================================  REGISTER =============================================================
 
 Route::get('/register', function () {
-    return view('register');
+    if (!Auth::check()) {
+        return view('asklogin');
+    }
+
+    return view('register', ['user' => Auth::user()]);
 });
 
 Route::post('/register', function (Request $request) {
@@ -89,6 +88,33 @@ Route::post('/register', function (Request $request) {
     if ($user) {
         return view('register', [
             'error' => 'هذا المستخدم موجود',
+            'user' => Auth::user(),
+        ]);
+    }
+
+    if (!$request->name) {
+        return view('register', ['user' => Auth::user(),
+            'error_message' => 'الرجاء كتابة الاسم',
+        ]);
+    }
+    if (!$request->email) {
+        return view('register', ['user' => Auth::user(),
+            'error_message' => 'الرجاء كتابة  البريد الالكتروني',
+        ]);
+    }
+    if (!$request->password) {
+        return view('register', ['user' => Auth::user(),
+            'error_message' => 'الرجاء كتابة كلمة المرور',
+        ]);
+    }
+    if (!$request->phone) {
+        return view('register', ['user' => Auth::user(),
+            'error_message' => 'الرجاء كتابة رقم الهاتف',
+        ]);
+    }
+    if (!$request->area) {
+        return view('register', ['user' => Auth::user(),
+            'error_message' => 'الرجاء كتابة المنطقة',
         ]);
     }
 
@@ -105,55 +131,53 @@ Route::post('/register', function (Request $request) {
     $user->hospital = $request->hospital;
     $user->code = $request->code;
     $user->save();
-    Auth::login($user);
-    session(['logged' => true]);
-    return view('dashboard',['user'=> Auth::user()]);
+
+/*     Auth::login($user);
+session(['logged' => true]); */
+    return view('dashboard', ['user' => Auth::user(), 'register_message' => $user]);
 });
 
-
-// ===========================================  TRANSPORTS ============================================================= 
-
+// ===========================================  TRANSPORTS =============================================================
 
 Route::get('/transports', function () {
-    if(!Auth::check()){
+    if (!Auth::check()) {
         return view('asklogin');
     }
-    return view('transports',['user'=>Auth::user()]);
+    return view('transports', ['user' => Auth::user()]);
 });
 
-Route::post('/transports',function(Request $request){
-    
+Route::post('/transports', function (Request $request) {
+
     $to = $request->to;
     $from = $request->from;
     $people = $request->people;
     $price_share = $request->price_share;
 
-
-    if(!$request->from){
-        return view('transports',['user'=>Auth::user(),
-        'from_error' => 'الرجاء كتابة مكان التوصيل',
-        'from' => $from,
-        'to' => $to,
-        'people' => $people,
-        'price_share' => $price_share
+    if (!$request->from) {
+        return view('transports', ['user' => Auth::user(),
+            'from_error' => 'الرجاء كتابة مكان التوصيل',
+            'from' => $from,
+            'to' => $to,
+            'people' => $people,
+            'price_share' => $price_share,
         ]);
     }
 
-    if(!$request->to){
-        return view('transports',['user'=>Auth::user(),'to_error' => 'الرجاء كتابة مكان التوصيل',
-        'from' => $from,
-        'to' => $to,
-        'people' => $people,
-        'price_share' => $price_share
+    if (!$request->to) {
+        return view('transports', ['user' => Auth::user(), 'to_error' => 'الرجاء كتابة مكان التوصيل',
+            'from' => $from,
+            'to' => $to,
+            'people' => $people,
+            'price_share' => $price_share,
         ]);
     }
 
-    if(!$request->people){
-        return view('transports',['user'=>Auth::user(),'people_error' => 'الرجاء كتابة عدد الاشخاص',
-        'from' => $from,
-        'to' => $to,
-        'people' => $people,
-        'price_share' => $price_share
+    if (!$request->people) {
+        return view('transports', ['user' => Auth::user(), 'people_error' => 'الرجاء كتابة عدد الاشخاص',
+            'from' => $from,
+            'to' => $to,
+            'people' => $people,
+            'price_share' => $price_share,
         ]);
     }
 
@@ -162,39 +186,34 @@ Route::post('/transports',function(Request $request){
     $transport->to = $request->to;
     $transport->people = $request->people;
     $transport->driver = $request->driver;
-   /*  if($request->driver  == 'تاكسي'){
-        $transport->driver = 'تاكسي';
+    /*  if($request->driver  == 'تاكسي'){
+    $transport->driver = 'تاكسي';
     }else{
-        $user = User::find($request->driver)->first();
-        $transport->driver = $user->name;
+    $user = User::find($request->driver)->first();
+    $transport->driver = $user->name;
 
     } */
     $transport->price_share = $request->price_share;
     $transport->save();
-    return view('dashboard',['user'=>Auth::user(),
-    'message'=> 'شكراَ جزيلاَ']);
+    return view('dashboard', ['user' => Auth::user(),
+        'message' => 'شكراَ جزيلاَ']);
 });
 
-
-
-// ===========================================  HELPS ============================================================= 
-
+// ===========================================  HELPS =============================================================
 
 Route::get('/helps', function () {
-    if(!Auth::check()){
+    if (!Auth::check()) {
         return view('asklogin');
     }
-    return view('helps',['user'=>Auth::user()]);
+    return view('helps', ['user' => Auth::user()]);
 });
 
-
-
-Route::post('/helps',function(Request $request){
+Route::post('/helps', function (Request $request) {
     $patient = $request->patient;
 
-    if(!$patient){
-        return view('helps',['user'=>Auth::user(),
-        'patient_error' => 'الرجاء كتابة اسم المريض'
+    if (!$patient) {
+        return view('helps', ['user' => Auth::user(),
+            'patient_error' => 'الرجاء كتابة اسم المريض',
         ]);
     }
 
@@ -208,55 +227,45 @@ Route::post('/helps',function(Request $request){
     $help->hospital = $request->hospital;
 
     $help->save();
-    return view('dashboard',['user'=>Auth::user(),
-    'message'=> 'شكراَ جزيلاَ']);
+    return view('dashboard', ['user' => Auth::user(),
+        'message' => 'شكراَ جزيلاَ']);
 });
 
-
-// ===========================================  STATISTICS ============================================================= 
-
+// ===========================================  STATISTICS =============================================================
 
 Route::get('/statistics', function () {
-    if(!Auth::check()){
+    if (!Auth::check()) {
         return view('asklogin');
     }
-    return view('statistics',['user'=>Auth::user()]);
+    return view('statistics', ['user' => Auth::user()]);
 });
 
 Route::post('/statistics', 'StatisticsController@statistics');
 
-
-
-
-
-// ===========================================  DONATE ============================================================= 
+// ===========================================  DONATE =============================================================
 
 Route::get('/donates', function () {
-    if(!Auth::check()){
+    if (!Auth::check()) {
         return view('asklogin');
     }
-    return view('donates',['user'=>Auth::user()]);
+    return view('donates', ['user' => Auth::user()]);
 });
-
-
 
 Route::post('/donates', function (Request $request) {
     $donor_name = $request->donor_name;
     $donate_type = $request->donate_type;
- 
 
-    if(!$donor_name){
-        return view('donates',['user'=>Auth::user(),
-            'donor_name_error' , 'الرجاء كتابة اسم المتبرع'
+    if (!$donor_name) {
+        return view('donates', ['user' => Auth::user(),
+            'donor_name_error', 'الرجاء كتابة اسم المتبرع',
         ]);
     }
 
-    if(!$donor_name){
-        return view('donates',['user'=>Auth::user(),
-            'donate_type_error' , 'الرجاء كتابة نوع التبرع'
+    if (!$donor_name) {
+        return view('donates', ['user' => Auth::user(),
+            'donate_type_error', 'الرجاء كتابة نوع التبرع',
         ]);
     }
-
 
     $donate = new Donate();
     $donate->donor_name = $request->donor_name;
@@ -264,30 +273,23 @@ Route::post('/donates', function (Request $request) {
     $donate->description = $request->description;
 
     $donate->save();
-    return view('dashboard',['user'=>Auth::user(),
-    'message'=> 'شكراَ جزيلاَ']);
-
+    return view('dashboard', ['user' => Auth::user(),
+        'message' => 'شكراَ جزيلاَ']);
 
 });
 
-
-// ===========================================  TOOLS ============================================================= 
+// ===========================================  TOOLS =============================================================
 
 Route::get('/tools', function () {
-    if(!Auth::check()){
+    if (!Auth::check()) {
         return view('asklogin');
     }
-    return view('tools',['user'=>Auth::user()]);
+    return view('tools', ['user' => Auth::user()]);
 });
 
+Route::post('/tools', 'ToolController@addTool');
 
-
-Route::post('/tools','ToolController@addTool');
-
-
-
-
-// ===========================================  GRAPH ============================================================= 
+// ===========================================  GRAPH =============================================================
 Route::get('/graph', function () {
-    return view('graph',['user'=>Auth::user()]);
+    return view('graph', ['user' => Auth::user()]);
 });

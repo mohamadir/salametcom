@@ -11,10 +11,23 @@
 <div class="container">
 @if (!empty($message))
 <div class="text-center mt-5">
-    
+
         <div class="alert alert-success m-3 text-center" role="alert">
         {{$message}}
         </div>
+</div>
+@endif
+
+@if (!empty($register_message))
+<div class="text-center mt-5">
+        <div class="alert alert-success m-3 " role="alert">
+           <h4 class="text-center">تمت اضافة مستحدم جديد</h4>
+           <div class="text-right">
+            {{$register_message->name}}   <strong>:اسم </strong><br/>
+             {{$register_message->email}} <strong>:ايمل </strong> <br/>
+           {{$register_message->password}}  <strong>:كلمة المرور  </strong>
+        </div>
+           </div>
 </div>
 @endif
 
@@ -27,13 +40,13 @@
     مئات التوصيلات تقوم بها سلامتكم لمرضى ومرافقيهم من الحواجز الى المستشفيات وبالعكس عشرات الاجهزة الطبية تقوم سلامتكم باقتنائها شهرياُ
     العديد من النشاطات والمساعدات اليومية يقوم بها المتطوعين .
     </h5>
-    
+
 </p>
 <p>
     <h4 class="text-center">
        <strong>
        حان الوقت لتوثيق كل هذا العطاء
-       </strong> 
+       </strong>
     </h4>
 </p>
 <p>
@@ -54,18 +67,24 @@
           @if($user->is_admin == 1)
           <li class="nav-item">
            <h3> <a class="nav-link text-center"   style="color: red;" href="/statistics">احصائيات  <i class="fas fa-chart-bar"></i></a></h3>
-          </li>  
+          </li>
           <li class="nav-item">
            <h3> <a class="nav-link text-center"   style="color: red;" href="/users">مستخدمين <i class="fas fa-users"></i></i></a></h3>
-          </li> 
-          @endif         
+          </li>
+          @endif
           @endauth
-         
+
 
 
         </ul>
 </p>
-
+@if($user->is_admin)
+<p class="text-center">
+                 <div class="text-center mt-5">
+                        <h2><a href="/register" class="font-weight-bold" >إضافة</a> حساب جديد</h2>
+                    </div>
+</p>
+@endif
 
 </div>
 

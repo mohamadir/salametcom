@@ -6,8 +6,16 @@
 
             <div class="container mt-4">
                 <h2 class="text-center m-3">
-                    دخول المستخدم
+                    اضافة مستخدم جديد
                 </h2>
+                @if (!empty($error_message))
+                <div class="text-center">
+
+                        <div class="alert alert-danger m-3 text-center" role="alert">
+                        {{$error_message}}
+                        </div>
+                </div>
+                @endif
                 <div style="direction: rtl; text-align: right;">
                     <form action="/register" method="post">
                         {{csrf_field()}}
@@ -39,11 +47,11 @@
                             </div>
 
                             <div class="text-center" >
-                            <button type="submit" class="mt-3 btn btn-primary btn-w">تسجيل </button>
+                            <button type="submit" class="mt-3 btn btn-primary btn-w">اضافة </button>
                             </div>
                     </form>
-                    <div class="text-center mt-5">
+                   <!--  <div class="text-center mt-5">
                         <h5> لديك حساب؟ <a href="/login" class="font-weight-bold" >تسجيل الدخول</a></h5>
-                    </div>
+                    </div> -->
             </div>
 @endsection
