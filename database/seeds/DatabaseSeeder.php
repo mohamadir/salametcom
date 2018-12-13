@@ -31,7 +31,7 @@ class DatabaseSeeder extends Seeder {
         DB::table('users')->insert([
             'name' => 'يعقوب ابراهيم',
             'is_admin' => 1,
-            'email' => 'yaqob@gmail.com',
+            'email' => 'yaacob@gmail.com',
             'password' => 'Yaacob6002',
             'phone' => '0545444704',
             'area' => 'ابوغوش',
