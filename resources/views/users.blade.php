@@ -22,15 +22,16 @@
                         <h6 class="align-self-right" >{{$user->name}}</h6>
                     </div>
                     <div class="col-2 text-left d-flex flex-row" style=" direction: ltr;">
+                        <div  style=" direction: ltr;">
+                            <a  data-toggle="collapse" href="#collapse{{$user->id}}"  class="btn btn-info mt-2 mb-2 mr-1 text-white"> معلومات<i class="far fa-info-alt"></i></a>
+                        </div>
                         @if($user->is_admin == 0)
                         <form action="/delete/{{$user->id}}" class="delete mb-2 mt-2" method="post"  style=" direction: ltr;">
                         {{ csrf_field() }}
                           <button type="submit"  class="btn btn-primary"><i class="far fa-trash-alt"></i></button>
                         </form>
                         @endif
-                        <div  style=" direction: ltr;">
-                            <a  data-toggle="collapse" href="#collapse{{$user->id}}"  class="btn btn-info mt-2 mb-2 ml-1 text-white"> معلومات<i class="far fa-info-alt"></i></a>
-                        </div>
+
 
 
                     </div>
