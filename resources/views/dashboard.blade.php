@@ -22,10 +22,10 @@
 <div class="text-center mt-5">
         <div class="alert alert-success m-3 " role="alert">
            <h4 class="text-center">تمت اضافة مستحدم جديد</h4>
-           <div class="text-right">
-            {{$register_message->name}}   <strong>:اسم </strong><br/>
-             {{$register_message->email}} <strong>:ايمل </strong> <br/>
-           {{$register_message->password}}  <strong>:كلمة المرور  </strong>
+           <div class="text-center" style="direction: ltr;">
+            {{$register_message->name}}   <br/>
+             {{$register_message->email}}  <br/>
+           {{$register_message->password}}
         </div>
            </div>
 </div>
