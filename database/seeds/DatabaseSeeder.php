@@ -37,29 +37,5 @@ class DatabaseSeeder extends Seeder {
             'area' => 'ابوغوش',
         ]);
 
-        DB::table('users')->insert([
-            'name' => 'يعقوب 2ابراهيم',
-            'is_admin' => 0,
-            'email' => 'yaacob2@gmail.com',
-            'password' => 'Yaacob6002',
-            'phone' => '0545444704',
-            'area' => 'ابوغوش',
-        ]);
-        DB::table('users')->insert([
-            'name' => 'يعقوب 3ابراهيم',
-            'is_admin' => 0,
-            'email' => 'yaacob3@gmail.com',
-            'password' => 'Yaacob6002',
-            'phone' => '0545444704',
-            'area' => 'ابوغوش',
-        ]);
-        DB::table('users')->insert([
-            'name' => 'يعقوب 4ابراهيم',
-            'is_admin' => 0,
-            'email' => 'yaacob4@gmail.com',
-            'password' => 'Yaacob6002',
-            'phone' => '0545444704',
-            'area' => 'ابوغوش',
-        ]);
     }
 }
