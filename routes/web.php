@@ -20,8 +20,7 @@ use Illuminate\Support\Facades\Auth;
 // ===========================================  DASHBOARD =============================================================
 
 Route::get('/', function () {
-    $logged = session('logged', false);
-    if (!$logged) {
+    if (!Auth::check()) {
         return redirect('/login');
     }
     return view('dashboard', ['user' => Auth::user()]);
