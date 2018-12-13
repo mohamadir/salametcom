@@ -10,6 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
  */
+use App\Contact;
 use App\Donate;
 use App\Help;
 use App\Transport;
@@ -73,6 +74,77 @@ Route::post('/delete/{id}', function (Request $request, $id) {
     return redirect('/users');
 });
 
+// ===========================================  CONTACTS =============================================================
+
+Route::get('/add_contacts', function (Request $request) {
+
+    if (!Auth::check()) {
+        return view('asklogin');
+    }
+
+    return view('add_contacts', ['user' => Auth::user()]);
+
+});
+
+Route::get('/contacts', function (Request $request) {
+
+    if (!Auth::check()) {
+        return view('asklogin');
+    }
+
+    if ($request->search) {
+        $contacts = Contact::where('name', 'LIKE', '%' . $request->search . '%')->get();
+        return view('contacts', ['contacts' => $contacts, 'user' => Auth::user()]);
+    }
+
+    $contacts = Contact::get();
+
+    return view('contacts', ['contacts' => $contacts, 'user' => Auth::user()]);
+});
+
+Route::post('/contacts/delete/{id}', function (Request $request, $id) {
+    $contact = Contact::where('id', '=', $id)->first();
+    $contact->delete();
+    return redirect('/contacts');
+});
+
+Route::post('/contacts', function (Request $request) {
+
+    if (!$request->name) {
+        return view('add_contacts', ['user' => Auth::user(),
+            'error_message' => 'الرجاء كتابة الاسم',
+        ]);
+    }
+    if (!$request->email) {
+        return view('add_contacts', ['user' => Auth::user(),
+            'error_message' => 'الرجاء كتابة  البريد الالكتروني',
+        ]);
+    }
+    if (!$request->phone) {
+        return view('add_contacts', ['user' => Auth::user(),
+            'error_message' => 'الرجاء كتابة رقم الهاتف',
+        ]);
+    }
+
+    $contact = Contact::where('phone', $request->phone)->first();
+    if ($contact) {
+        return view('register', [
+            'error' => 'هذا المستخدم موجود',
+            'user' => Auth::user(),
+        ]);
+    }
+
+    $contact = new Contact();
+    $contact->name = $request->name;
+    $contact->email = $request->email;
+    $contact->phone = $request->phone;
+
+    $contact->save();
+
+/*     Auth::login($user);
+session(['logged' => true]); */
+    return redirect('/contacts');
+});
 // ===========================================  REGISTER =============================================================
 
 Route::get('/register', function () {

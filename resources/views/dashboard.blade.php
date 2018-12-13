@@ -71,6 +71,9 @@
           <li class="nav-item">
            <h3> <a class="nav-link text-center"   style="color: red;" href="/users">مستخدمين <i class="fas fa-users"></i></i></a></h3>
           </li>
+           <li class="nav-item">
+           <h3> <a class="nav-link text-center"   style="color: red;" href="/contacts">جهات الاتصال <i class="fas fa-phone-office"></i></a></h3>
+          </li>
           @endif
           @endauth
 
@@ -80,8 +83,11 @@
 </p>
 @if($user->is_admin)
 <p class="text-center">
-                 <div class="text-center mt-5">
+                     <div class="text-center mt-5">
                         <h2><a href="/register" class="font-weight-bold" >إضافة</a> حساب جديد</h2>
+                    </div>
+                      <div class="text-center mt-5">
+                        <h2><a href="/add_contacts" class="font-weight-bold" >إضافة</a> الى جهات الاتصال</h2>
                     </div>
 </p>
 @endif
