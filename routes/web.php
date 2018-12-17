@@ -120,6 +120,11 @@ Route::post('/contacts', function (Request $request) {
             'error_message' => 'الرجاء كتابة  البريد الالكتروني',
         ]);
     }
+    if (!$request->email) {
+        return view('add_contacts', ['user' => Auth::user(),
+            'error_message' => 'الرجاء كتابة المهنة',
+        ]);
+    }
     if (!$request->phone) {
         return view('add_contacts', ['user' => Auth::user(),
             'error_message' => 'الرجاء كتابة رقم الهاتف',
@@ -138,6 +143,7 @@ Route::post('/contacts', function (Request $request) {
     $contact->name = $request->name;
     $contact->email = $request->email;
     $contact->phone = $request->phone;
+    $contact->profession = $request->profession;
 
     $contact->save();
 

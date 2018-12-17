@@ -46,7 +46,12 @@
                             <strong>هاتف: </strong>  <a href="tel://{{$contact->email}}"> {{$contact->phone}} </a>
                         </p>
                         <p>
-                            <strong>المنطقة: </strong> {{$contact->area}}
+                             @if (!empty($contact->profession))
+                            <strong>المهنة: </strong> {{$contact->profession}}
+                            @else
+                            <strong>المهنة: </strong> ----
+
+                            @endif
                         </p>
                     </div>
 
