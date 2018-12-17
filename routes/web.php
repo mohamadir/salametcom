@@ -233,7 +233,7 @@ Route::post('/transports', function (Request $request) {
 
     if (!$request->from) {
         return view('transports', ['user' => Auth::user(),
-            'from_error' => 'الرجاء كتابة مكان التوصيل',
+            'error_message' => 'الرجاء كتابة مكان التوصيل',
             'from' => $from,
             'to' => $to,
             'people' => $people,
@@ -242,7 +242,7 @@ Route::post('/transports', function (Request $request) {
     }
 
     if (!$request->to) {
-        return view('transports', ['user' => Auth::user(), 'to_error' => 'الرجاء كتابة مكان التوصيل',
+        return view('transports', ['user' => Auth::user(), 'error_message' => 'الرجاء كتابة مكان التوصيل',
             'from' => $from,
             'to' => $to,
             'people' => $people,
@@ -251,7 +251,7 @@ Route::post('/transports', function (Request $request) {
     }
 
     if (!$request->people) {
-        return view('transports', ['user' => Auth::user(), 'people_error' => 'الرجاء كتابة عدد الاشخاص',
+        return view('transports', ['user' => Auth::user(), 'error_message' => 'الرجاء كتابة عدد الاشخاص',
             'from' => $from,
             'to' => $to,
             'people' => $people,

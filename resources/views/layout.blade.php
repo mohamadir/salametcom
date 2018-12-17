@@ -50,14 +50,18 @@
           <div style="height: 1px; background: white;"></div>
           <li class="nav-item">
            <h3> <a class="nav-link"   style="color: white;" href="/statistics"> <i class="fas fa-chart-bar"></i> احصائيات  </a></h3>
-          </li>  
+          </li>
           <div style="height: 1px; background: white;"></div>
           <li class="nav-item">
            <h3> <a class="nav-link"   style="color: white;" href="/users"><i class="fas fa-users"></i> مستخدمين </a></h3>
-          </li> 
-          @endif         
+          </li>
+          <div style="height: 1px; background: white;"></div>
+          <li class="nav-item">
+           <h3> <a class="nav-link"   style="color: white;" href="/contacts"><i class="fas fa-phone-volume"></i> جهات الاتصال </a></h3>
+          </li>
+          @endif
           @endauth
-         
+
 
 
         </ul>
