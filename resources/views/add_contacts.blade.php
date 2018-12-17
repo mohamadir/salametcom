@@ -24,17 +24,17 @@
                                 <label for="name">الاسم الكامل:</label><br>
                                 <input type="text" name="name" class="form-control" >
                             </div>
+                             <!-- Profession -->
+                            <div class="form-group">
+                                <label for="profession">المهنة:</label><br>
+                                <input type="text" name="profession" class="form-control" >
+                            </div>
                             <!-- Name -->
                             <div class="form-group">
                                 <label for="email">بريد الكتروني:</label><br>
                                 <input type="email" name="email" id="exampleInputEmail1" class="form-control">
                             </div>
-                            <!-- Profession -->
 
-                            <div class="form-group">
-                                <label for="profession">المهنة:</label><br>
-                                <input type="text" name="profession" class="form-control" >
-                            </div>
                             <!-- Phone -->
                              <div class="form-group">
                                 <label for="phone">رقم الهاتف:</label><br>
