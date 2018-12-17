@@ -18,6 +18,12 @@
         </div>
     @endif
 
+    <div class="form-group">
+            <label for="phone">رقم الهاتف:</label><br>
+            <input type="number" name="phone" class="form-control" >
+    </div>
+
+
      <div class="form-group" >
         <label for="donate_type">التبرع بـ : </label>
         <input type="text" class="form-control" name="donate_type" id="patient"  placeholder="">

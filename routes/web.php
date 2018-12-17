@@ -349,6 +349,7 @@ Route::post('/donates', function (Request $request) {
     $donate->donor_name = $request->donor_name;
     $donate->donate_type = $request->donate_type;
     $donate->description = $request->description;
+    $donate->phone = $request->phone;
 
     $donate->save();
     return view('dashboard', ['user' => Auth::user(),
