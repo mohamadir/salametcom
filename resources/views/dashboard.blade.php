@@ -66,6 +66,7 @@
           @auth
           @if($user->is_admin == 1)
           <li class="nav-item">
+
            <h3> <a class="nav-link text-center"   style="color: red;" href="/statistics">احصائيات  <i class="fas fa-chart-bar"></i></a></h3>
           </li>
           <li class="nav-item">
@@ -74,6 +75,10 @@
            <li class="nav-item">
            <h3> <a class="nav-link text-center"   style="color: red;" href="/contacts">جهات الاتصال <i class="fas fa-phone-volume"></i> </a></h3>
           </li>
+            <li class="nav-item">
+           <h3> <a class="nav-link text-center"   style="color: red;" href="/store">المخزن <i class="fas fa-store"></i>  </a></h3>
+          </li>
+
           @endif
           @endauth
 

@@ -1,0 +1,38 @@
+html,
+body {
+    overflow-x: hidden;
+    /* Prevent scroll on narrow devices */
+}
+
+body {
+    padding-top: 56px;
+}
+
+.plus-minus-input {
+    -webkit-align-items: center;
+    background: red;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.plus-minus-input .input-group-field {
+    text-align: center;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    background: red;
+
+    padding: 1rem;
+}
+
+.plus-minus-input .input-group-field::-webkit-inner-spin-button,
+.plus-minus-input .input-group-field ::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    background: red;
+
+    appearance: none;
+}
+
+.plus-minus-input .input-group-button .circle {
+    border-radius: 50%;
+    padding: 0.25em 0.8em;
+}

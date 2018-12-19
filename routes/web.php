@@ -13,6 +13,7 @@
 use App\Contact;
 use App\Donate;
 use App\Help;
+use App\Thing;
 use App\Transport;
 use App\User;
 use Illuminate\Http\Request;
@@ -367,6 +368,30 @@ Route::get('/tools', function () {
 });
 
 Route::post('/tools', 'ToolController@addTool');
+
+// ===========================================  THINGS =============================================================
+
+Route::get('/add_things', function () {
+    if (!Auth::check()) {
+        return view('asklogin');
+    }
+    return view('things', ['user' => Auth::user()]);
+});
+
+Route::post('/things', 'ThingController@addThing');
+Route::get('/store', 'ThingController@getThings');
+Route::post('/things/dec/{id}', function (Request $request, $id) {
+    $thing = Thing::where('id', '=', $id)->first();
+    $thing->quantity = $thing->quantity - 1;
+    $thing->save();
+    return redirect('/store');
+});
+Route::post('/things/inc/{id}', function (Request $request, $id) {
+    $thing = Thing::where('id', '=', $id)->first();
+    $thing->quantity = $thing->quantity + 1;
+    $thing->save();
+    return redirect('/store');
+});
 
 // ===========================================  GRAPH =============================================================
 Route::get('/graph', function () {
