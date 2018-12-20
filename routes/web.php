@@ -73,7 +73,7 @@ Route::post('/login', function (Request $request) {
     $helps = Help::get()->count();
     $contacts = Contact::get()->count();
     $things = Thing::get()->count();
-    $statistics = $transports + $tools + $tools + $helps;
+    $statistics = $transports + $donates + $tools + $helps;
     return view('dashboard',
         ['user' => Auth::user(),
             'users' => $users,
