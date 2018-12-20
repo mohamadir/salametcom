@@ -10,6 +10,7 @@
     <meta property="og:url" content="http://mohamdibrahem.com" />
     <meta name = "viewport" content = "width=device-width, initial-scale=1.0, user-scalable=no">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" >
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link href="https://unpkg.com/gijgo@1.9.11/css/gijgo.min.css" rel="stylesheet" type="text/css" />
     @yield('css')
@@ -25,6 +26,10 @@
       </button>
 
       <div class="navbar-collapse offcanvas-collapse bg-primary" id="navbarsExampleDefault">
+           @auth
+                <h3 style="color: white" class="text-center"> {{$user->name}} </h3>
+                <h5 style="color: white" class="text-center"> {{$user->email}} </h5>
+           @endauth
         <ul class="navbar-nav mr-auto mt-3" style="direction: rtl; text-align: right;" >
           <li class="nav-item active">
             <h3><a class="nav-link" style="color: white;" href="/">  <i class="fas fa-home"></i> الرئيسية<span class="sr-only">(current)</span></a></h3>
@@ -94,7 +99,6 @@
    <script>
     $(function () {
         'use strict'
-
         $('[data-toggle="offcanvas"]').on('click', function () {
             $('.offcanvas-collapse').toggleClass('open')
         })

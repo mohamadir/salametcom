@@ -50,6 +50,9 @@ Route::get('/', function () {
 
 // ===========================================  LOGIN =============================================================
 Route::get('/login', function () {
+    if (Auth::check()) {
+        return redirect('/');
+    }
     return view('login');
 });
 
@@ -65,26 +68,27 @@ Route::post('/login', function (Request $request) {
     }
     Auth::loginUsingId($user->id);
     session(['logged' => true]);
-    $transports = Transport::get()->count();
-    $tools = Tool::get()->count();
-    $donates = Donate::get()->count();
-    $tools = Tool::get()->count();
-    $users = User::get()->count();
-    $helps = Help::get()->count();
-    $contacts = Contact::get()->count();
-    $things = Thing::get()->count();
-    $statistics = $transports + $donates + $tools + $helps;
-    return view('dashboard',
-        ['user' => Auth::user(),
-            'users' => $users,
-            'tools' => $tools,
-            'things' => $things,
-            'helps' => $helps,
-            'contacts' => $contacts,
-            'donates' => $donates,
-            'transports' => $transports,
-            'statistics' => $statistics,
-        ]);
+    return redirect('/');
+    /*  $transports = Transport::get()->count();
+$tools = Tool::get()->count();
+$donates = Donate::get()->count();
+$tools = Tool::get()->count();
+$users = User::get()->count();
+$helps = Help::get()->count();
+$contacts = Contact::get()->count();
+$things = Thing::get()->count();
+$statistics = $transports + $donates + $tools + $helps;
+return view('dashboard',
+['user' => Auth::user(),
+'users' => $users,
+'tools' => $tools,
+'things' => $things,
+'helps' => $helps,
+'contacts' => $contacts,
+'donates' => $donates,
+'transports' => $transports,
+'statistics' => $statistics,
+]); */
 
 });
 
@@ -194,6 +198,7 @@ session(['logged' => true]); */
 // ===========================================  REGISTER =============================================================
 
 Route::get('/register', function () {
+    return redirect('/');
     if (!Auth::check()) {
         return view('asklogin');
     }
