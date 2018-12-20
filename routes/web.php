@@ -14,6 +14,7 @@ use App\Contact;
 use App\Donate;
 use App\Help;
 use App\Thing;
+use App\Tool;
 use App\Transport;
 use App\User;
 use Illuminate\Http\Request;
@@ -25,7 +26,26 @@ Route::get('/', function () {
     if (!Auth::check()) {
         return redirect('/login');
     }
-    return view('dashboard', ['user' => Auth::user()]);
+    $transports = Transport::get()->count();
+    $tools = Tool::get()->count();
+    $donates = Donate::get()->count();
+    $tools = Tool::get()->count();
+    $users = User::get()->count();
+    $helps = Help::get()->count();
+    $contacts = Contact::get()->count();
+    $things = Thing::get()->count();
+    $statistics = $transports + $tools + $tools + $helps;
+    return view('dashboard',
+        ['user' => Auth::user(),
+            'users' => $users,
+            'tools' => $tools,
+            'things' => $things,
+            'helps' => $helps,
+            'contacts' => $contacts,
+            'donates' => $donates,
+            'transports' => $transports,
+            'statistics' => $statistics,
+        ]);
 });
 
 // ===========================================  LOGIN =============================================================

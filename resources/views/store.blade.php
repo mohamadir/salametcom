@@ -5,7 +5,7 @@
 @section('content')
     <h2 class="text-center mt-3"> المخزن </h2>
     <div class="input-group md-form form-sm form-1 pl-0 mb-2" >
-        <form method="get" action="/store" class="d-flex flex-row w-100">
+        <form method="get" action="/store" class="d-flex flex-row w-100 mb-1">
             <button type="submit" class="btn btn-primary">
                 بحث
              </button>
@@ -14,7 +14,7 @@
      </div>
         <a class="btn btn-success w-100" style="" href="/add_things">  اضافة <i class="fas fa-plus ml-1"></i>  </a>
 
-    <div class="list-group" style="direction: rtl;" >
+    <div class="list-group mt-2" style="direction: rtl;" >
         @foreach ($things as $thing)
             <div class="list-group-item" style="width: 100%;">
                 <div class="row"  style=" direction: rtl;">

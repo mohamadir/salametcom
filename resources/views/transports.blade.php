@@ -90,7 +90,7 @@
     <input type="text" id="cost-input" class="form-control"  name="cost" id="exampleInputEmail1" aria-describedby="emailHelp"  placeholder="سعر التوصيلة">
 
 
-    <div style="width: 100%; text-align: center;" class="mb-3">
+    <div style="width: 100%; text-align: center;" class="mb-3 mt-2">
       <button type="submit" class="btn btn-primary btn-w" style="background: red; align-self: center;">تسجيل</button>
     </div>
 </form>
