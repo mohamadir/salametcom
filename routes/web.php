@@ -265,6 +265,7 @@ Route::post('/transports', function (Request $request) {
     $transport->to = $request->to;
     $transport->people = $request->people;
     $transport->driver = $request->driver;
+    $transport->cost = $request->cost;
     /*  if($request->driver  == 'تاكسي'){
     $transport->driver = 'تاكسي';
     }else{

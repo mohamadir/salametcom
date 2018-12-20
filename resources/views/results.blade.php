@@ -119,6 +119,11 @@
                             <p>
                                 <strong>السائق : </strong>  {{$result->driver}}
                             </p>
+                            @if($result->cost)
+                             <p>
+                                <strong>سعر التوصيلة : </strong>  {{$result->cost}}
+                            </p>
+                            @endif
                             <p>
                                 <strong>مساعدة بمبلغ: </strong> {{$result->price_share}}
                             </p>

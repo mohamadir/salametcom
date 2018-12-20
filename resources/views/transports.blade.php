@@ -87,6 +87,7 @@
     </div>
 
     <input type="text" id="driver-input" class="form-control d-none"  id="exampleInputEmail1" aria-describedby="emailHelp"  placeholder="اسم المتطوع">
+    <input type="text" id="cost-input" class="form-control"  name="cost" id="exampleInputEmail1" aria-describedby="emailHelp"  placeholder="سعر التوصيلة">
 
 
     <div style="width: 100%; text-align: center;" class="mb-3">
@@ -133,9 +134,12 @@
                $('#driver-input').removeClass("d-none");
                $(this).removeAttr("name")
                $('#driver-input').attr("name","driver");
+               $('#cost-input').addClass("d-none");
+
             }else{
                $('#driver-input').addClass("d-none");
-               $(this).attr("name","driver");
+               $('#cost-input').removeClass("d-none");
+               $('#cost-input').attr("name","driver");
                $('#driver-input').removeAttr("name");
            }
         });
