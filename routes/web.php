@@ -357,8 +357,28 @@ Route::post('/transports', function (Request $request) {
     } */
     $transport->price_share = $request->price_share;
     $transport->save();
-    return view('dashboard', ['user' => Auth::user(),
-        'message' => 'شكراَ جزيلاَ']);
+    $transports = Transport::get()->count();
+    $tools = Tool::get()->count();
+    $donates = Donate::get()->count();
+    $tools = Tool::get()->count();
+    $users = User::get()->count();
+    $helps = Help::get()->count();
+    $contacts = Contact::get()->count();
+    $things = Thing::get()->count();
+    $statistics = $transports + $donates + $tools + $helps;
+    return view('dashboard',
+        ['user' => Auth::user(),
+            'message' => 'شكراَ جزيلاَ',
+            'users' => $users,
+            'tools' => $tools,
+            'things' => $things,
+            'helps' => $helps,
+            'contacts' => $contacts,
+            'donates' => $donates,
+            'transports' => $transports,
+            'statistics' => $statistics,
+        ]);
+
 });
 
 // ===========================================  HELPS =============================================================
@@ -389,6 +409,35 @@ Route::post('/helps', function (Request $request) {
     $help->hospital = $request->hospital;
 
     $help->save();
+    if ($request->patient && $request->patient_phone) {
+        $contact = new Contact();
+        $contact->name = $request->patient;
+        $contact->phone = $request->patient_phone;
+        $contact->email = ' ';
+        $contact->profession = ' ';
+        $contact->save();
+    }
+    $transports = Transport::get()->count();
+    $tools = Tool::get()->count();
+    $donates = Donate::get()->count();
+    $tools = Tool::get()->count();
+    $users = User::get()->count();
+    $helps = Help::get()->count();
+    $contacts = Contact::get()->count();
+    $things = Thing::get()->count();
+    $statistics = $transports + $donates + $tools + $helps;
+    return view('dashboard',
+        ['user' => Auth::user(),
+            'message' => 'شكراَ جزيلاَ',
+            'users' => $users,
+            'tools' => $tools,
+            'things' => $things,
+            'helps' => $helps,
+            'contacts' => $contacts,
+            'donates' => $donates,
+            'transports' => $transports,
+            'statistics' => $statistics,
+        ]);
     return view('dashboard', ['user' => Auth::user(),
         'message' => 'شكراَ جزيلاَ']);
 });
@@ -436,8 +485,27 @@ Route::post('/donates', function (Request $request) {
     $donate->phone = $request->phone;
 
     $donate->save();
-    return view('dashboard', ['user' => Auth::user(),
-        'message' => 'شكراَ جزيلاَ']);
+    $transports = Transport::get()->count();
+    $tools = Tool::get()->count();
+    $donates = Donate::get()->count();
+    $tools = Tool::get()->count();
+    $users = User::get()->count();
+    $helps = Help::get()->count();
+    $contacts = Contact::get()->count();
+    $things = Thing::get()->count();
+    $statistics = $transports + $donates + $tools + $helps;
+    return view('dashboard',
+        ['user' => Auth::user(),
+            'message' => 'شكراَ جزيلاَ',
+            'users' => $users,
+            'tools' => $tools,
+            'things' => $things,
+            'helps' => $helps,
+            'contacts' => $contacts,
+            'donates' => $donates,
+            'transports' => $transports,
+            'statistics' => $statistics,
+        ]);
 
 });
 
