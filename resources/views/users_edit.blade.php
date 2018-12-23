@@ -10,6 +10,12 @@
     <form class="flex-column" style="background: white; text-align: right; direction: rtl;" method="post" action="/users/edit/{{$user2->id}}" >
     @csrf
 
+     @if (!empty($error))
+    <div class="alert alert-danger m-3 text-center" role="alert">
+        {{$error}}
+        </div>
+    @endif
+
     <div class="form-group" >
         <label for="patient">الاسم: </label>
         <input type="text" class="form-control" value="{{$user2->name}}" name="name" id="patient"  placeholder="">

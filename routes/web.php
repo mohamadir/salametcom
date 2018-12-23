@@ -123,6 +123,10 @@ Route::get('/users/edit/{id}', function (Request $request, $id) {
 });
 
 Route::post('/users/edit/{id}', function (Request $request, $id) {
+    if (!$request->email || !$request->phone || !$request->area || !$request->name || !$request->password) {
+        return view('users_edit', ['user' => Auth::user(), 'user2' => User::find($id),
+            'error' => 'هناك حقول فارغة']);
+    }
     $user = User::find($id);
     $user->email = $request->email;
     $user->phone = $request->phone;
@@ -151,14 +155,18 @@ Route::get('/contacts/edit/{id}', function (Request $request, $id) {
 
 Route::post('/contacts/edit/{id}', function (Request $request, $id) {
     $contact = Contact::find($id);
+    if (!$request->email || !$request->phone || !$request->profession || !$request->name) {
+        return view('edit', ['user' => Auth::user(), 'contact' => Contact::find($id),
+            'error' => 'هناك حقول فارغة']);
+    }
+
     $contact->email = $request->email;
     $contact->phone = $request->phone;
-    $contact->profession = $request->profession;
+    $contact->profession = !$request->profession ? '---' : $request->profession;
     $contact->name = $request->name;
     $contact->save();
     return redirect('/contacts');
 });
-
 
 Route::get('/contacts', function (Request $request) {
 
