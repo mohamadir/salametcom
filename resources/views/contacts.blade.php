@@ -28,13 +28,14 @@
                             <a  data-toggle="collapse" href="#collapse{{$contact->id}}"  class="btn btn-info mt-2 mb-2 mr-1 text-white"> معلومات<i class="far fa-info-alt"></i></a>
                         </div>
 
-                        @if($contact->is_admin == 1)
+                        @if($user->is_admin == 1)
                         <form action="/contacts/delete/{{$contact->id}}" class="delete mb-2 mt-2" method="post"  style=" direction: ltr;">
                         {{ csrf_field() }}
                           <button type="submit"  class="btn btn-primary"><i class="far fa-trash-alt"></i></button>
                         </form>
-                        @endif
+                        <a href="/contacts/edit/{{$contact->id}}"  class="mt-2 ml-1 mb-2 btn btn-primary"><i class="fas fa-pen"></i></a>
 
+                        @endif
 
 
                     </div>

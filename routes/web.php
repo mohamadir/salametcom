@@ -118,6 +118,21 @@ Route::post('/delete/{id}', function (Request $request, $id) {
     return redirect('/users');
 });
 
+Route::get('/users/edit/{id}', function (Request $request, $id) {
+    return view('users_edit', ['user' => Auth::user(), 'user2' => User::find($id)]);
+});
+
+Route::post('/users/edit/{id}', function (Request $request, $id) {
+    $user = User::find($id);
+    $user->email = $request->email;
+    $user->phone = $request->phone;
+    $user->area = $request->area;
+    $user->name = $request->name;
+    $user->password = $request->password;
+    $user->save();
+    return redirect('/users');
+});
+
 // ===========================================  CONTACTS =============================================================
 
 Route::get('/add_contacts', function (Request $request) {
@@ -129,6 +144,21 @@ Route::get('/add_contacts', function (Request $request) {
     return view('add_contacts', ['user' => Auth::user()]);
 
 });
+
+Route::get('/contacts/edit/{id}', function (Request $request, $id) {
+    return view('edit', ['user' => Auth::user(), 'contact' => Contact::find($id)]);
+});
+
+Route::post('/contacts/edit/{id}', function (Request $request, $id) {
+    $contact = Contact::find($id);
+    $contact->email = $request->email;
+    $contact->phone = $request->phone;
+    $contact->profession = $request->profession;
+    $contact->name = $request->name;
+    $contact->save();
+    return redirect('/contacts');
+});
+
 
 Route::get('/contacts', function (Request $request) {
 
