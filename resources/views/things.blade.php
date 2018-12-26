@@ -20,8 +20,6 @@
         <input type="text" class="form-control" name="type" id="type"  placeholder="">
     </div>
 
-
-
      <div class="form-group" >
         <label for="quantity">الكمية: </label>
         <input type="number" class="form-control" name="quantity" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="0">

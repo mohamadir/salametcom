@@ -544,6 +544,30 @@ Route::post('/things/inc/{id}', function (Request $request, $id) {
     return redirect('/store');
 });
 
+
+Route::get('/things/edit/{id}', function (Request $request, $id) {
+    return view('things_edit', ['user' => Auth::user(), 'thing' => Thing::find($id)]);
+});
+
+Route::get('/things/delete/{id}', function (Request $request, $id) {
+    $thing = Thing::where('id', '=', $id)->first();
+    $thing->delete();
+    return redirect('/store');
+});
+
+Route::post('/things/edit/{id}', function (Request $request, $id) {
+    if (!$request->type || !$request->quantity ) {
+        return view('things_edit', ['user' => Auth::user(), 'thing' => Thing::find($id),
+            'error' => 'هناك حقول فارغة']);
+    }
+    $thing = Thing::find($id);
+    $thing->quantity = $request->quantity;
+    $thing->description = $request->description;
+    $thing->type = $request->type;
+    $thing->save();
+    return redirect('/store');
+});
+
 // ===========================================  GRAPH =============================================================
 Route::get('/graph', function () {
     return view('graph', ['user' => Auth::user()]);

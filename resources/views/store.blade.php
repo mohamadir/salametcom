@@ -27,7 +27,10 @@
                         <div  style=" direction: ltr;">
                             <a  data-toggle="collapse" href="#collapse{{$thing->id}}"  class="btn btn-info mt-2 mb-2 mr-1 text-white"> تفاصيل<i class="far fa-info-alt"></i></a>
                         </div>
-
+                        @if($user->is_admin == 1)
+                        <a href="/things/edit/{{$thing->id}}"  class="mt-2 ml-1 mb-2 btn btn-primary"><i class="fas fa-pen"></i></a>
+                        <a href="/things/delete/{{$thing->id}}"  class="delete mt-2 ml-1 mb-2 btn btn-primary"><i class="fas fa-trash-alt"></i></a>
+                        @endif
 
 
                     </div>
@@ -46,7 +49,7 @@
                                         <button type="submit"  class="btn btn-primary">-</i></button>
                                     </form>
                                 </div>
-                                <div class="col-2 text-center mt-3 ml-4" >
+                                <div class="col-2 text-center mt-2 ml-2 mb-2 mr-2" >
                                     <strong class="text-center "> {{$thing->quantity}}  </strong>
                                 </div>
                                 <div class="col-1">
@@ -88,7 +91,11 @@
             return confirm("هل تريد تنقيص العدد؟");
         });
 
+        $(".delete").click(function(){
+            return confirm("هل تريد حذف هذا الغرض؟");
+        });
     });
+
 </script>
 
 @endsection
