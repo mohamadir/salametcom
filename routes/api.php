@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
-
+use App\Contact;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -19,6 +19,30 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('/test', function () {
     return 'TEST';
+});
+
+Route::get('/contacts', function (Request $request) {
+
+    
+    return Contact::get();
+
+});
+//contacts
+
+Route::post('/upload/contacts', function (Request $request) {
+    
+    foreach ($request->data as $contact){
+        $new =  new Contact();
+       
+        $new->email = $contact['email'] ? $contact['email'] : '';
+        $new->phone = $contact['phone'] ? $contact['phone'] : '';
+        $new->name = $contact['name'];
+        $new->profession = '';
+        $new->save();
+    }
+
+    return 'SUCCESS';
+
 });
 
 // users

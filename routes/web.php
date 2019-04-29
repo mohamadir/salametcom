@@ -149,6 +149,8 @@ Route::get('/add_contacts', function (Request $request) {
 
 });
 
+
+
 Route::get('/contacts/edit/{id}', function (Request $request, $id) {
     return view('edit', ['user' => Auth::user(), 'contact' => Contact::find($id)]);
 });
