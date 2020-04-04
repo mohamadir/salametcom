@@ -20,6 +20,11 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+
+// ============ MiddleWare ==================
+
+Route::group(['middleware' => 'throttle:30,1'], function(){
+
 // ===========================================  DASHBOARD =============================================================
 
 Route::get('/', function () {
@@ -574,3 +579,6 @@ Route::post('/things/edit/{id}', function (Request $request, $id) {
 Route::get('/graph', function () {
     return view('graph', ['user' => Auth::user()]);
 });
+});
+
+
